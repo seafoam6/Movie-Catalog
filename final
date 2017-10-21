@@ -8,12 +8,12 @@
 # lu ? should i add this?
 # == END Steve Section ==
 
-: ${MOVIES:=$HOME/moviecatalog}
+: ${MOVIES:=$HOME/moviecatalog.txt}
 export MOVIES
 # if filename does not exist
 if [ ! -e "$MOVIES" ] ; then
     echo "$MOVIES does not exist!"
-    echo "You want it, right??? (y/n) ? \c"
+    echo -e "You want a really cool movies catalog, right??? (y/n) ? \c"
     read answer
 
     if [ "$answer" != y ] ; then
