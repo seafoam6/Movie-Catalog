@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+#look up
+
+name="$1"
+# find matching lines in Movies, pipe to matches$$, case insensitive
+grep -i "$name" $MOVIES > /tmp/matches$$
+
+# if matches$$ file is not greater than 0 in size
+if [ ! -s /tmp/matches$$ ] ; then
+    echo "I can't find $name in the movie catalog"
+else 
+    # display each matching entry
+
+    while read line 
+    do 
+        display "$line"
+    done < /tmp/matches$$
+fi
+
+rm /tmp/matches$$

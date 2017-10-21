@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+
+# update entry in phone book
+
+name=$1
+
+# get matching entries, save into temp file
+
+grep -i "$name" $MOVIES > /tmp/matches$$
+if [ ! -s /tmp/matches$$ ] ; then
+    echo "I can't find $name in the movie catalog"
+    exit 1
+fi
+
+# display matching entries one at a time and confirm change
+
+while read line
+do
+    display "$line"
+    echo "Change this entry (y/n) \c"
+    read answer < /dev/tty
+
+    if [ "$answer" = y ] ; then
+        break
+    fi
+done < /tmp/matches$$
+
+rm /tmp/matches$$
+
+if [ "$answer" != y ] ; then
+    exit
+fi
+
+#start up editor on the confirmed entry
+
+echo "$line\c" | tr '^' '\012' > /tmp/ed$$
+
+echo "Enter changes with ${EDITOR:=/bin/vi}"
+trap "" 2
+$EDITOR /tmp/ed$$
+
+# Remove old entry and insert new one
+
+grep -i -v "^$lines$" $MOVIES > /tmp/movies$$
+{ tr '\012' '^' < /tmp/ed$$; echo; } >> /tmp/movies$$
+
+sort /tmp/movies$$ -o $MOVIES
+rm /tmp/ed$$ /tmp/movies$$

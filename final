@@ -1,0 +1,92 @@
+#!/usr/bin/env bash
+
+# movies
+
+# == Steve Section Wipe out ==
+# PHONEBOOK = MOVIES
+# /phonebook = /moviecatalog
+# lu ? should i add this?
+# == END Steve Section ==
+
+: ${MOVIES:=$HOME/moviecatalog}
+export MOVIES
+# if filename does not exist
+if [ ! -e "$MOVIES" ] ; then
+    echo "$MOVIES does not exist!"
+    echo "You want it, right??? (y/n) ? \c"
+    read answer
+
+    if [ "$answer" != y ] ; then
+    exit 1
+    fi
+
+    #make movies file or exit if it fails
+    > $MOVIES || exit 1 
+fi 
+
+# if argument(s) do a lookup
+if [ "$#" -ne 0 ] ; then 
+    lu "$@"
+    exit
+fi
+
+# Set trap on delete key
+
+trap "continue" SIGINT
+
+# Loop until exit is selected
+
+while true
+do 
+    # display menu
+    echo -e '
+    Would you like to:
+
+        1. Look a movie up
+        2. Add a movie to your catalog
+        3. Remove a movie from catalog
+        4. Update an entry in catalog
+        5. List all titles and details in catalog
+        6. Exit this program
+    
+    Please select from the menu above (1-6): \c'
+
+    # process selection
+    read choice
+    echo 
+    case "$choice"
+    in 
+        1)  echo -e "Enter movie to look up: \c"
+            read name
+
+            # if variable length is 0, ignore
+            if [ -z "$name" ] ; then
+                echo "Lookup ignored"
+            else
+                lu "$name"
+            fi;;
+        2)  add;;
+        3)  echo -e "Enter a title to remove: \c"
+            read name
+            
+             # if variable length is 0, ignore
+            if [ -z "$name" ] ; then
+                echo "Removal ignored"
+            else
+                rem "$name"
+            fi;;
+        
+        4)  echo "Enter name to update: \c"
+            read name
+            
+             # if variable length is 0, ignore
+            if [ -z "$name" ] ; then
+                echo "Update ignored"
+            else
+                change "$name"
+            fi;;
+        5) listall;;
+        6) exit 0;;
+        *) echo -e "Your options are 1, 2, 3, 4, 5, or 6\a";;
+    esac
+done

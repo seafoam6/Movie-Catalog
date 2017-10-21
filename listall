@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+# list all movies in catalog
+
+IFS='^'
+echo "^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^"
+echo "^v^v^v^v^v^v^v^v^== MOVIES CATALOG  ==^v^v^v^v^v^v^v^v^v^v^v^"
+while read line 
+do 
+    # Get first and last fields
+    set $line
+    
+    # display 1st and last fields in reverse order
+    eval printf "\"%-40.40s %s\\n\"" "\"$1\"" "\"\${$#}\""
+done < $MOVIES
+echo "^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^"

@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+# Program to add movie
+
+echo "Type in your new entry"
+echo "When you're done, type a single Enter on the line."
+
+first=
+entry=
+
+while true
+do 
+    echo -e ">> \c"
+    read line
+
+    # if length is nonZero
+    if [ -n "$line" ] ; then
+        #append line to entry, plus hat as seperator
+        entry="$entry$line^"
+        # if length is zero
+        if [ -z "$first" ] ; then 
+            first=$line
+        fi
+    else
+        break
+    fi
+done
+
+# add this entry to the end of the file
+echo "$entry" >> $MOVIES
+# sort and redirect output to file
+sort -o $MOVIES $MOVIES
+echo 
+echo "$first has been added to the movie catalog"

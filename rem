@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+
+# remove entry from movies
+
+name=$1
+
+# Get matching entries and save in temp file
+
+grep -i "$name" $Movies > /tmp/matches$$
+# if file size is 0
+if [ ! -s /tmp/matches$$ ] ; then
+    echo "I can't find $name in movie catalog"
+    exit 1
+fi
+
+# display matching entries and confirm removal
+
+while read line
+do
+    display "$line"
+    echo "Remove this title from catalog (y/n)? \n"
+    read answer < /dev/tty
+
+    if [ "$answer" = y ] ; then
+        break
+    fi
+done < /tmp/matches$$
+
+rm /tmp/matches$$
+
+if [ "$answer" = y ] ; then
+    # pipe all lines that do NOT match
+    if grep -i -v "^$line$" $MOVIES > /tmp/movies$$
+    then 
+        mv /tmp/movies$$ $MOVIES
+        echo "Selected entry has been removed"
+    elif [ ! -s $MOVIES ] ; then
+        echo "Note: You don't have any movies :( "
+    else
+        echo "Entry not removed"
+    fi
+fi
