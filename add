@@ -27,8 +27,8 @@ do
 done
 
 # add this entry to the end of the file
-echo "$entry" >> $MOVIES
+echo "$entry" >> $CATALOG_LOCATION
 # sort and redirect output to file
-sort -o $MOVIES $MOVIES
+sort -o $CATALOG_LOCATION $CATALOG_LOCATION
 echo 
 echo "$first has been added to the movie catalog"

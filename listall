@@ -12,5 +12,5 @@ do
     
     # display 1st and last fields in reverse order
     eval printf "\"%-40.40s %s\\n\"" "\"$1\"" "\"\${$#}\""
-done < $MOVIES
+done < $CATALOG_LOCATION
 echo "^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^"

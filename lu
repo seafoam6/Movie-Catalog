@@ -4,7 +4,7 @@
 
 name="$1"
 # find matching lines in Movies, pipe to matches$$, case insensitive
-grep -i "$name" $MOVIES > /tmp/matches$$
+grep -i "$name" $CATALOG_LOCATION > /tmp/matches$$
 
 # if matches$$ file is not greater than 0 in size
 if [ ! -s /tmp/matches$$ ] ; then

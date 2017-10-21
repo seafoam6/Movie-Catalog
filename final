@@ -2,17 +2,11 @@
 
 # movies
 
-# == Steve Section Wipe out ==
-# PHONEBOOK = MOVIES
-# /phonebook = /moviecatalog
-# lu ? should i add this?
-# == END Steve Section ==
-
-: ${MOVIES:=$HOME/moviecatalog.txt}
+: ${CATALOG_LOCATION:=$HOME/moviecatalog.txt}
 export MOVIES
 # if filename does not exist
-if [ ! -e "$MOVIES" ] ; then
-    echo "$MOVIES does not exist!"
+if [ ! -e "$CATALOG_LOCATION" ] ; then
+    echo "$CATALOG_LOCATION does not exist!"
     echo -e "You want a really cool movies catalog, right??? (y/n) ? \c"
     read answer
 
@@ -21,7 +15,7 @@ if [ ! -e "$MOVIES" ] ; then
     fi
 
     #make movies file or exit if it fails
-    > $MOVIES || exit 1 
+    > $CATALOG_LOCATION || exit 1 
 fi 
 
 # if argument(s) do a lookup
@@ -76,7 +70,7 @@ do
                 rem "$name"
             fi;;
         
-        4)  echo "Enter name to update: \c"
+        4)  echo -e "Enter title to update: \c"
             read name
             
              # if variable length is 0, ignore
