@@ -3,7 +3,7 @@
 # movies
 
 : ${CATALOG_LOCATION:=$HOME/moviecatalog.txt}
-export MOVIES
+export CATALOG_LOCATION
 # if filename does not exist
 if [ ! -e "$CATALOG_LOCATION" ] ; then
     echo "$CATALOG_LOCATION does not exist!"
