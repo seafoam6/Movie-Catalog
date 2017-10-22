@@ -33,7 +33,7 @@ fi
 
 #start up editor on the confirmed entry
 
-echo "$line\c" | tr '^' '\012' > /tmp/ed$$
+echo -e "$line\c" | tr '^' '\012' > /tmp/ed$$
 
 echo "Enter changes with ${EDITOR:=/bin/vi}"
 trap "" 2
@@ -41,7 +41,7 @@ $EDITOR /tmp/ed$$
 
 # Remove old entry and insert new one
 
-grep -i -v "^$lines$" $CATALOG_LOCATION > /tmp/movies$$
+grep -i -v "^$line$" $CATALOG_LOCATION > /tmp/movies$$
 { tr '\012' '^' < /tmp/ed$$; echo; } >> /tmp/movies$$
 
 sort /tmp/movies$$ -o $CATALOG_LOCATION
