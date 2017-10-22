@@ -28,6 +28,7 @@ fi
 # Set trap on delete key
 
 trap "continue" SIGINT
+trap "final; exit 0" 2
 
 # Loop until exit is selected
 
