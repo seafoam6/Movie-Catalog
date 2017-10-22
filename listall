@@ -3,16 +3,21 @@
 # list all movies in catalog
 
 IFS='^'
-echo "^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^"
-echo "^v^v^v^v^v^v^v^v^== MOVIES CATALOG  ==^v^v^v^v^v^v^v^v^v^v^v^"
-echo "                                                             "
-echo "NAME:                   YEAR:                    GENRE:"
+format="\"%-45.40s%-10.4s%21.15s\\n\""
+divider="^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v"
+title="Movies Catalog"
+echo "$divider$divider"
+eval printf "\"%-20.20s\t%8s%8s\t%28.28s\"" "$divider" "$title" "$divider"
+echo -e "\n"
+eval printf "$format" "Name" "Year" "Genre"
+eval printf "$format" "====" "====" "====="
 while read line 
 do 
     # Get first and last fields
     set $line
     
-    # display 1st and last fields in reverse order
-    eval printf "\"%-0.20s                %-0.4s                   %+0.10s\\n\"" "\"$1\"" "\"$2\"" "\"$3\""
+    # display fields, \t tab
+    eval printf "$format" "\"$1\"" "\"$2\"" "\"$3\""
 done < $CATALOG_LOCATION
-echo "^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^"
+echo -e ""
+echo "$divider$divider"

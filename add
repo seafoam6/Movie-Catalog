@@ -4,10 +4,24 @@
 
 echo "What is the name of the movie?"
 read movie_name
+if [ -z "$movie_name" ] ; then
+   echo "No fields may be blank"
+   add;
+fi
+
 echo "Which year was the film released?"
 read year
+if [ -z "$year" ] ; then
+   echo "No fields may be blank"
+   add;
+fi
+
 echo "Which genre is the film?"
 read genre
+if [ -z "$genre" ] ; then
+   echo "No fields may be blank"
+   add;
+fi
 
 entry="$movie_name^$year^$genre^"
 
@@ -17,7 +31,7 @@ echo "$entry" >> $CATALOG_LOCATION
 sort -o $CATALOG_LOCATION $CATALOG_LOCATION
 echo 
 echo "$movie_name has been added to the movie catalog"
-
+echo -e ""
 echo "Would you like to add another movie to the catalog (y/n)?"
 read answer 
 if [ "$answer" = "y" ] ; then 

@@ -6,7 +6,10 @@ name=$1
 
 # Get matching entries and save in temp file
 
+
 grep -i "$name" $CATALOG_LOCATION > /tmp/matches$$
+cat /tmp/matches$$
+
 # if file size is 0
 if [ ! -s /tmp/matches$$ ] ; then
     echo "I can't find $name in movie catalog"
@@ -35,7 +38,5 @@ if [ "$answer" = y ] ; then
     echo "Selected entry has been removed"
     if [ ! -s $CATALOG_LOCATION ] ; then
         echo "Note: You don't have any movies :( "
-    else
-        echo "Entry not removed"
     fi
 fi

@@ -10,7 +10,7 @@ entry=$1
 IFS="^"
 set $entry
 
-for line in "$1" "$2" "$3" "$4" "$5" "$6"
+for line in "$1" "$2" "$3"
 do
     printf "{ %-57.57s }\n" $line
 done
