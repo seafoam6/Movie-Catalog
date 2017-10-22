@@ -2,33 +2,24 @@
 
 # Program to add movie
 
-echo "Type in your new entry"
-echo "When you're done, type a single Enter on the line."
+echo "What is the name of the movie?"
+read movie_name
+echo "Which year was the film released?"
+read year
+echo "Which genre is the film?"
+read genre
 
-first=
-entry=
-
-while true
-do 
-    echo -e ">> \c"
-    read line
-
-    # if length is nonZero
-    if [ -n "$line" ] ; then
-        #append line to entry, plus hat as seperator
-        entry="$entry$line^"
-        # if length is zero
-        if [ -z "$first" ] ; then 
-            first=$line
-        fi
-    else
-        break
-    fi
-done
+entry="$movie_name^$year^$genre^"
 
 # add this entry to the end of the file
 echo "$entry" >> $CATALOG_LOCATION
 # sort and redirect output to file
 sort -o $CATALOG_LOCATION $CATALOG_LOCATION
 echo 
-echo "$first has been added to the movie catalog"
+echo "$movie_name has been added to the movie catalog"
+
+echo "Would you like to add another movie to the catalog (y/n)?"
+read answer 
+if [ "$answer" = "y" ] ; then 
+    add;
+fi

@@ -5,12 +5,14 @@
 IFS='^'
 echo "^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^"
 echo "^v^v^v^v^v^v^v^v^== MOVIES CATALOG  ==^v^v^v^v^v^v^v^v^v^v^v^"
+echo "                                                             "
+echo "NAME:                   YEAR:                    GENRE:"
 while read line 
 do 
     # Get first and last fields
     set $line
     
     # display 1st and last fields in reverse order
-    eval printf "\"%-40.40s %s\\n\"" "\"$1\"" "\"\${$#}\""
+    eval printf "\"%-0.20s                %-0.4s                   %+0.10s\\n\"" "\"$1\"" "\"$2\"" "\"$3\""
 done < $CATALOG_LOCATION
 echo "^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^"

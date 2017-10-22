@@ -4,6 +4,7 @@
 
 : ${CATALOG_LOCATION:=$HOME/moviecatalog.txt}
 export CATALOG_LOCATION
+
 # if filename does not exist
 if [ ! -e "$CATALOG_LOCATION" ] ; then
     echo "$CATALOG_LOCATION does not exist!"
