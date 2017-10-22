@@ -61,7 +61,7 @@ do
                 lu "$name"
             fi;;
         2)  add;;
-        3)  echo -e "Enter a title to remove: \c"
+        3)  echo -e "Enter a title, year, genre to remove a movie: \c"
             read name
             
              # if variable length is 0, ignore

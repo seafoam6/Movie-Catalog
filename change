@@ -33,7 +33,7 @@ fi
 
 #start up editor on the confirmed entry
 
-echo -e "$line\c" | tr '^' '\012' > /tmp/ed$$
+echo -e "$line" | tr '^' '\012' > /tmp/ed$$
 
 echo "Enter changes with ${EDITOR:=/bin/vi}"
 trap "" 2

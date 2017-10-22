@@ -5,9 +5,9 @@
 IFS='^'
 format="\"%-45.40s%-10.4s%21.15s\\n\""
 divider="^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v"
-title="Movies Catalog"
+title="'Movies Catalog'"
 echo "$divider$divider"
-eval printf "\"%-20.20s\t%8s%8s\t%28.28s\"" "$divider" "$title" "$divider"
+eval printf "\"%-20.20s\t%s\t\t%28.28s\"" "$divider" "$title" "$divider"
 echo -e "\n"
 eval printf "$format" "Name" "Year" "Genre"
 eval printf "$format" "====" "====" "====="

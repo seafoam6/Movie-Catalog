@@ -8,7 +8,7 @@ name=$1
 
 
 grep -i "$name" $CATALOG_LOCATION > /tmp/matches$$
-cat /tmp/matches$$
+#cat /tmp/matches$$
 
 # if file size is 0
 if [ ! -s /tmp/matches$$ ] ; then
